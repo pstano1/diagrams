@@ -1,12 +1,18 @@
 package main
 
 import (
-    "go.uber.org/zap"
+	"github.com/pstano1/diagrams.git/pkg/diagrams"
+	"go.uber.org/zap"
+)
+
+const (
+	diagramsDirectory = "./pkg/diagrams"
 )
 
 func main() {
 	logger := zap.Must(zap.NewProduction())
-    defer logger.Sync()
+	defer logger.Sync()
 
-    logger.Info("Hello World!")
+	controller := diagrams.New(logger.Named("diagrams"))
+	controller.GenerateDiagrams()
 }
