@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/pstano1/diagrams.git/pkg/diagrams/casker"
+	gocart "github.com/pstano1/diagrams.git/pkg/diagrams/go-cart"
 	"go.uber.org/zap"
 )
 
@@ -33,6 +34,8 @@ func New(logger *zap.Logger) IDiagrams {
 
 func (d *Diagrams) GenerateDiagrams() {
 	d.generateDiagram("notificationService.dot", casker.GenerateNotificationService, casker.GetAssetsPath, "notificationService")
+
+	d.generateDiagram("customerAPISchema.dot", gocart.GenerateCustomerAPISchema, gocart.GetAssetsPath, "customerAPISchema")
 }
 
 func (d *Diagrams) generateDiagram(filename string, generator func(string) error, getPath func() string, name string) {
